@@ -53,7 +53,8 @@ export default function Home() {
           {BANNERS.map((banner, index) => (
             <View key={index} style={{position: 'relative', width: width - 32, height: 192, backgroundColor: '#E5E7EB', overflow: 'hidden'}}>
               <Image source={{uri: banner.image}} style={{width: '100%', height: '100%'}} resizeMode='cover' />
-
+              
+              <View style={{position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: 'rgba(0, 0, 0, 0.4)'}} />
               <View style={{position: 'absolute', bottom: 16, left: 16, zIndex: 10}}>
                 <Text style={{color: 'white', fontSize: 24, fontWeight: 'bold'}}>{banner.title}</Text>
                 <Text style={{color: 'white', fontSize: 14, fontWeight: '500'}}>{banner.subtitle}</Text>
@@ -61,7 +62,7 @@ export default function Home() {
                   <Text style={{color: '#111111', fontSize: 12, fontWeight: 'bold'}}>Get Now</Text>
                 </TouchableOpacity>
               </View>
-              <View style={{position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: 'rgba(0, 0, 0, 0.4)'}} />
+              
             </View>
           ))}
         </ScrollView>

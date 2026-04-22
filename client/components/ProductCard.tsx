@@ -4,16 +4,18 @@ import { ProductCardProps } from '@/constants/types'
 import { Link } from 'expo-router'
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '@/constants';
+import { useWishlist } from '@/context/WishlistContext';
 
 export default function ProductCard({product}: ProductCardProps) {
-    const isLiked = true;
+    const {toggleWishlist, isInWishlist} = useWishlist()
+    const isLiked = isInWishlist(product._id);
     return (
     <Link href={`/product/${product._id}`} asChild>
         <TouchableOpacity style={{width: '48%', marginBottom: 16, backgroundColor: 'white', borderRadius: 8, overflow: 'hidden'}}>
         
         {/* Image Container */}
         <View style={{position: 'relative', height: 224, width: '100%', backgroundColor: '#F3F4F6'}}>
-            <Image source={{uri: product.images[0]}} style={{width: '100%', height: '100%'}} resizeMode="cover"/>
+            <Image source={{uri: product.images?.[0] ?? ''}} style={{width: '100%', height: '100%'}} resizeMode="cover"/>
 
             {/* favourite icon */}
             <TouchableOpacity 
@@ -31,8 +33,9 @@ export default function ProductCard({product}: ProductCardProps) {
                 shadowRadius: 2,
                 elevation: 2
             }} 
-            onPress={(e) => e.stopPropagation()}
-            >
+            onPress={(e) => {e.stopPropagation();
+            toggleWishlist(product)
+            }}>
             <Ionicons name={isLiked ? 'heart' : 'heart-outline'} size={20} color={isLiked ? COLORS.accent : COLORS.primary}/>
             </TouchableOpacity>
 
