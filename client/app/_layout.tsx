@@ -8,12 +8,12 @@ import Toast from "react-native-toast-message";
 export default function RootLayout() {
   return (
     <GestureHandlerRootView style = {{flex: 1}}>
-      <CartProvider>
-        <WishlistProvider>
-          <Stack screenOptions = {{ headerShown: false }} />
-          <Toast />
-        </WishlistProvider>
-      </CartProvider>
+        <CartProvider>
+          <WishlistProvider>
+            <Stack screenOptions = {{ headerShown: false }} />
+            <Toast />
+          </WishlistProvider>
+        </CartProvider>
     </GestureHandlerRootView>
   ) 
   
